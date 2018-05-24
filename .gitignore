@@ -1,7 +1,6 @@
 .DS_Store
 emojis.backup.txt
 package-lock.json
-package.json
 tweets.txt
 node_modules
 secrets.json
