@@ -2,5 +2,6 @@
 emojis.backup.txt
 package-lock.json
 tweets.txt
+tweet_json.txt
 node_modules
 secrets.json
