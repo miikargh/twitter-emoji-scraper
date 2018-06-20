@@ -5,13 +5,13 @@ const emojiFile = './emojis.txt'
 const tweetFile = './tweets.txt'
 let lineCounter = 0
 let fileCounter = 0
-const maxFileLineCount = 10
+const maxFileLineCount = 9999
 
 const client = new Twitter(creds)
 const emojis = fs.readFileSync(emojiFile, 'utf8')
 const params = {
     track: emojis,
-    language: 'ar',
+    language: 'fi',
 }
 
 const saveTweetObjectToFile = (tweetObj) => {
