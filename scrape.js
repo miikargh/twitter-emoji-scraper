@@ -4,13 +4,13 @@ const creds = require('./secrets.json')
 const emojiFile = './emojis.txt'
 const tweetFile = './tweets.txt'
 const lineCounterFile = './current_line_count.txt'
-const maxFileLineCount = 100
+const maxFileLineCount = 10000
 
 const client = new Twitter(creds)
 const emojis = fs.readFileSync(emojiFile, 'utf8')
 const params = {
     track: emojis,
-    language: 'en',
+    language: 'fi',
 }
 
 const counts = fs.readFileSync(lineCounterFile).toString().split(',').map(Number)
