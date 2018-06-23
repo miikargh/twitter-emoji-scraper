@@ -4,22 +4,23 @@ const creds = require('./secrets.json')
 const emojiFile = './emojis.txt'
 const tweetFile = './tweets.txt'
 const lineCounterFile = './current_line_count.txt'
-let fileCounter = 0
-const maxFileLineCount = 10000
+const maxFileLineCount = 100
 
 const client = new Twitter(creds)
 const emojis = fs.readFileSync(emojiFile, 'utf8')
 const params = {
     track: emojis,
-    language: 'fi',
+    language: 'en',
 }
 
-let lineCounter = Number(fs.readFileSync(lineCounterFile))
+const counts = fs.readFileSync(lineCounterFile).toString().split(',').map(Number)
+let lineCounter = counts[0]
+let fileCounter = counts[1]
 
 const saveTweetObjectToFile = (tweetObj) => {
     const tweetJSON = JSON.stringify(tweetObj)
 
-    console.log('Line counter:', lineCounter)
+    console.log(lineCounter, fileCounter)
 
     if (lineCounter >= maxFileLineCount) {
         lineCounter = 0
@@ -27,7 +28,7 @@ const saveTweetObjectToFile = (tweetObj) => {
     }
 
     fs.appendFileSync('./data/tweets_'+ fileCounter +'.txt', tweetJSON + '\n')
-    fs.writeFileSync(lineCounterFile, lineCounter.toString())
+    fs.writeFileSync(lineCounterFile, lineCounter.toString() + ',' + fileCounter.toString())
 
     lineCounter++
 }
