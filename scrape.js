@@ -1,8 +1,7 @@
 const fs = require('fs')
 const Twitter = require('twitter')
 const creds = require('./secrets.json')
-const emojiFile = './emojis.txt'
-const tweetFile = './tweets.txt'
+const emojiFile = './deepmoji_emojis.txt'
 const lineCounterFile = './current_line_count.txt'
 const maxFileLineCount = 10000
 
@@ -20,14 +19,12 @@ let fileCounter = counts[1]
 const saveTweetObjectToFile = (tweetObj) => {
     const tweetJSON = JSON.stringify(tweetObj)
 
-    console.log(lineCounter, fileCounter)
-
     if (lineCounter >= maxFileLineCount) {
         lineCounter = 0
         fileCounter += 1
     }
 
-    fs.appendFileSync('./data/tweets_'+ fileCounter +'.txt', tweetJSON + '\n')
+    fs.appendFileSync('./data/deepmoji_tweets_'+ fileCounter +'.txt', tweetJSON + '\n')
     fs.writeFileSync(lineCounterFile, lineCounter.toString() + ',' + fileCounter.toString())
 
     lineCounter++
